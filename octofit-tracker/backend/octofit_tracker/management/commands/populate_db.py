@@ -118,10 +118,19 @@ class Command(BaseCommand):
                 calories = duration * 8 + (i * 20)
                 days_ago = j + (i * 2)
                 
+                # Calculate distance based on activity type
+                if activity_type in ['Running', 'Cycling']:
+                    distance = (duration / 60) * (15 if activity_type == 'Cycling' else 8)  # km per hour average
+                elif activity_type == 'Swimming':
+                    distance = (duration / 60) * 2.5  # km per hour average for swimming
+                else:
+                    distance = 0.0
+                
                 Activity.objects.create(
                     user_id=str(hero._id),
                     activity_type=activity_type,
                     duration=duration,
+                    distance=round(distance, 2),
                     calories_burned=calories,
                     date=date.today() - timedelta(days=days_ago),
                     notes=f'{hero.name} crushing {activity_type}!'
