@@ -15,7 +15,6 @@ I want to build an Octofit Tracker app that will include the following:
 
 ## Never change directories when agent mode is running commands
 
-- Never change directories
 - Instead point to the directory when issuing commands
 
 ## Forwarded ports
